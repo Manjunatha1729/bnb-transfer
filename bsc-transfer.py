@@ -7,7 +7,7 @@ web3 = Web3(Web3.HTTPProvider(bsc))
 
 
 #connecting web3 to Ganache
-if  web3.isConnected() == True:
+if  web3.is_connected() == True:
     print("web3 connected...\n")
 else :
     print("error connecting...")
@@ -27,31 +27,32 @@ address = '0x9FAE0B98d66321cc6Ac0B6A35d79b23aD8321976'
 balance = web3.eth.get_balance(address)
 # print(balance)
  
-result = web3.fromWei(balance,'ether')
+result = web3.from_wei(balance,'ether')
 print(result)
 
 gas_fee = 21000*5
 gas_fee = Decimal(gas_fee)
-gas_fee = web3.fromWei(gas_fee,'Gwei')
+gas_fee = web3.from_wei(gas_fee,'Gwei')
 
 
 balance = balance-gas_fee
 
-nonce = web3.eth.getTransactionCount(account_1)
+nonce = web3.eth.get_transaction_count(account_1)
 
 #build transaction
 tx = {
     'nonce':nonce,
     'to':account_2,
-    'value':web3.toWei(balance,'ether'),
+    'value':web3.to_wei(balance,'ether'),
     'gas':21000,
-    'gasPrice':web3.toWei('5','gwei')
+    'gasPrice':web3.to_wei('5','gwei')
 }
 
 #sign transaction with private key
-signed_tx = web3.eth.account.signTransaction(tx,private_key)
+signed_tx = web3.eth.account.sign_transaction(tx,private_key)
 
 #send Transaction
-tx_hash= web3.eth.sendRawTransaction(signed_tx.rawTransaction)
+tx_hash= web3.eth.send_raw_transaction(signed_tx.raw_transaction)
 
 print(web3.toHex(tx_hash))
+print("Hi")

@@ -7,7 +7,7 @@ web3 = Web3(Web3.HTTPProvider(bsc))
 
 
 #connecting web3 to Ganache
-if  web3.isConnected() == True:
+if  web3.is_connected() == True:
     print("web3 connected...\n")
 else :
     print("error connecting...")
@@ -27,12 +27,12 @@ private_key = "3ddc37fdcd6ba99f9a16206467e459d4009ab30b3b4909a5ba0ca50ea40d2624"
 balance = web3.eth.get_balance(account_1)
 # print(balance)
 
-result = web3.fromWei(balance,'ether')
+result = web3.from_wei(balance,'ether')
 print(result)
 
 gas_fee = 21000*5
 gas_fee = Decimal(gas_fee)
-gas_fee = web3.fromWei(gas_fee,'Gwei')
+gas_fee = web3.from_wei(gas_fee,'Gwei')
 
 
 def get_balance_loop():
@@ -40,8 +40,8 @@ def get_balance_loop():
     while True:
         while 0.0005>balance:
             #Get balance account
-            balance = web3.eth.getBalance(account_1)
-            balance = web3.fromWei(balance, "ether") #convert to ether value
+            balance = web3.eth.get_balance(account_1)
+            balance = web3.from_wei(balance, "ether") #convert to ether value
 
         balance = balance-gas_fee
         print(balance)
@@ -58,9 +58,9 @@ def build_transaction(balance):
     tx = {
         'nonce':nonce,
         'to':account_2,
-        'value':web3.toWei(balance,'ether'),
+        'value':web3.to_wei(balance,'ether'),
         'gas':21000,
-        'gasPrice':web3.toWei('56','gwei')
+        'gasPrice':web3.to_wei('56','gwei')
     }
 
     #sign transaction with private key

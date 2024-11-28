@@ -30,7 +30,7 @@ balance = web3.eth.get_balance(account_1)
 result = web3.from_wei(balance,'ether')
 print(result)
 
-gas_fee = 21000*5
+gas_fee = 21000*1
 gas_fee = Decimal(gas_fee)
 gas_fee = web3.from_wei(gas_fee,'Gwei')
 
